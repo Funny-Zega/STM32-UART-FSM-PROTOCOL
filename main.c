@@ -118,52 +118,8 @@ void command_parser_fsm(void){
 	  }
 	  buffer_flag = 0;
 }
-//void uart_communiation_fsm(void)
-//{
-//  uint32_t now = HAL_GetTick();
-//
-//  switch(uc_state){
-//    case 0: // UC_IDLE
-//      if(command_flag == 1){
-//        command_flag = 0;
-//        uc_last_adc_value = 0;
-//        HAL_ADC_Start(&hadc1);
-//        if(HAL_ADC_PollForConversion(&hadc1, 10) == HAL_OK){
-//          uc_last_adc_value = (uint16_t)HAL_ADC_GetValue(&hadc1);
-//        }
-//        HAL_ADC_Stop(&hadc1);
-//        snprintf(uc_tx_packet, sizeof(uc_tx_packet), "!ADC=%u#\r\n", (unsigned)uc_last_adc_value);
-//        uc_state = 1;
-//      }
-//      break;
-//
-//    case 1: // UC_SEND_ADC
-//      HAL_UART_Transmit(&huart2, (uint8_t*)uc_tx_packet, (uint16_t)strlen(uc_tx_packet), 200);
-//      uc_last_send_time = HAL_GetTick();
-//      uc_state = 2;
-//      break;
-//
-//    case 2: // UC_WAIT_ACK
-//      if(command_flag == 2){ // OK
-//        command_flag = 0;
-//        uc_state = 0;
-//      } else {
-//        if((now - uc_last_send_time) >= UC_TIMEOUT_MS){
-//          uc_state = 3; // RESEND
-//        }
-//      }
-//      break;
-//
-//    case 3: // UC_RESEND
-//      HAL_UART_Transmit(&huart2, (uint8_t*)uc_tx_packet, (uint16_t)strlen(uc_tx_packet), 200);
-//      uc_last_send_time = HAL_GetTick();
-//      uc_state = 2;
-//      break;
-//
-//    default:
-//      uc_state = 0; break;
-//  }
-//}
+
+//UART
 void uart_communiation_fsm(void)
 {
   uint32_t now = HAL_GetTick();
@@ -451,3 +407,4 @@ void assert_failed(uint8_t *file, uint32_t line)
 #endif /* USE_FULL_ASSERT */
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
+
